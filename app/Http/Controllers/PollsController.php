@@ -21,7 +21,8 @@ class PollsController extends Controller
         {
             return response()->json(null, 404);
         }
-        $response = new PollResource(Poll::findOrfail($id), 200);
+        $poll = Poll::with('questions')->findOrfail($id);
+        $response = new PollResource($poll, 200);
         return response()->json($response, 200);
     }
 
@@ -49,5 +50,14 @@ class PollsController extends Controller
     {
         $poll->delete();
         return response()->json(null, 204);
+    }
+
+    
+    
+    
+    public function questions(Request $request, Poll $poll)
+    {
+        $questions = $poll->questions;
+        return response()->json($questions, 200);
     }
 }
