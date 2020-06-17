@@ -11,3 +11,5 @@ npm-debug.log
 yarn-error.log
 .env
 /Ex_Files_RESTful_APIs_Laravel
+*.docx
+*.txt
